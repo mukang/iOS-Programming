@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="???" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cm-MM-uRy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="???" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Cm-MM-uRy">
                                 <rect key="frame" x="175" y="34" width="25" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -44,15 +44,23 @@
                                     <action selector="showAnswerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="maF-1E-APO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqG-Cs-V1b">
+                                <rect key="frame" x="166.5" y="34" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0Cm-MM-uRy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3VU-ZJ-21z"/>
-                            <constraint firstItem="0Cm-MM-uRy" firstAttribute="centerX" secondItem="qAc-Z2-dmc" secondAttribute="centerX" id="GIO-d3-Cyk"/>
                             <constraint firstItem="qAc-Z2-dmc" firstAttribute="top" secondItem="0Cm-MM-uRy" secondAttribute="bottom" constant="27" id="QYy-AL-SKL"/>
                             <constraint firstItem="DNN-Bn-KpG" firstAttribute="centerX" secondItem="qAc-Z2-dmc" secondAttribute="centerX" id="RmL-OM-2tA"/>
                             <constraint firstItem="8VR-gS-cJx" firstAttribute="centerX" secondItem="qAc-Z2-dmc" secondAttribute="centerX" id="ZKg-pg-Snd"/>
+                            <constraint firstItem="DqG-Cs-V1b" firstAttribute="top" secondItem="0Cm-MM-uRy" secondAttribute="top" id="bKr-uL-Yai"/>
                             <constraint firstItem="8VR-gS-cJx" firstAttribute="top" secondItem="DNN-Bn-KpG" secondAttribute="bottom" constant="37" id="hDT-yB-HVB"/>
+                            <constraint firstItem="DqG-Cs-V1b" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hsf-kr-xUJ"/>
+                            <constraint firstItem="qAc-Z2-dmc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iJm-dZ-So4"/>
                             <constraint firstItem="DNN-Bn-KpG" firstAttribute="top" secondItem="qAc-Z2-dmc" secondAttribute="bottom" constant="148" id="oMI-SR-tIB"/>
                             <constraint firstItem="0Cm-MM-uRy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="14" id="qbq-Za-KdD"/>
                         </constraints>
@@ -60,7 +68,10 @@
                     </view>
                     <connections>
                         <outlet property="answerLabel" destination="DNN-Bn-KpG" id="ECw-h7-isE"/>
-                        <outlet property="questionLabel" destination="0Cm-MM-uRy" id="tft-b4-02N"/>
+                        <outlet property="currentQuestionLabel" destination="0Cm-MM-uRy" id="bI1-K4-wLt"/>
+                        <outlet property="currentQuestionLabelCenterXConstraint" destination="3VU-ZJ-21z" id="YaM-ph-fMQ"/>
+                        <outlet property="nextQuestionLabel" destination="DqG-Cs-V1b" id="4KM-ku-cV6"/>
+                        <outlet property="nextQuestionLabelCenterXConstraint" destination="hsf-kr-xUJ" id="4fF-0g-4Jr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -21,16 +21,6 @@ class ItemsViewController: UITableViewController {
         }
     }
     
-    @IBAction func toggleEditingModel(sender: AnyObject) {
-        if isEditing {
-            sender.setTitle("Edit", for: .normal)
-            setEditing(false, animated: true)
-        } else {
-            sender.setTitle("Done", for: .normal)
-            setEditing(true, animated: true)
-        }
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         

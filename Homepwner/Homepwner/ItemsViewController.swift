@@ -30,6 +30,12 @@ class ItemsViewController: UITableViewController {
             setEditing(true, animated: true)
         }
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +48,12 @@ class ItemsViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 65
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

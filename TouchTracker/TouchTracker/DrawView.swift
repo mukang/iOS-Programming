@@ -47,6 +47,9 @@ class DrawView: UIView {
         tapRecognizer.delaysTouchesBegan = true
         tapRecognizer.require(toFail: doubleTapRecognizer)
         addGestureRecognizer(tapRecognizer)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gestureRecognizer:)))
+        addGestureRecognizer(longPressRecognizer)
     }
     
     @objc func doubleTap(gestureRecognizer: UITapGestureRecognizer) {
@@ -71,6 +74,22 @@ class DrawView: UIView {
             menu.menuItems = [deleteItem]
             menu.setTargetRect(CGRect(x: point.x, y: point.y, width: 2, height: 2), in: self)
             menu.setMenuVisible(true, animated: true)
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    @objc func longPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        print("Recognized a long press")
+        
+        if gestureRecognizer.state == .began {
+            let point = gestureRecognizer.location(in: self)
+            selectedLineIndex = indexOfLine(at: point)
+            if selectedLineIndex != nil {
+                currentLines.removeAll(keepingCapacity: false)
+            }
+        } else if gestureRecognizer.state == .ended {
+            selectedLineIndex = nil
         }
         
         setNeedsDisplay()

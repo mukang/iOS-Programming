@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DrawView: UIView {
+class DrawView: UIView, UIGestureRecognizerDelegate {
     var currentLines = [NSValue: Line]()
     var finishedLines = [Line]()
     var selectedLineIndex: Int? {
@@ -19,6 +19,7 @@ class DrawView: UIView {
             }
         }
     }
+    var moveRecognizer: UIPanGestureRecognizer!
     @IBInspectable var finishedLineColor: UIColor = UIColor.black {
         didSet {
             setNeedsDisplay()
@@ -50,6 +51,11 @@ class DrawView: UIView {
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(gestureRecognizer:)))
         addGestureRecognizer(longPressRecognizer)
+        
+        moveRecognizer = UIPanGestureRecognizer(target: self, action: #selector(moveLine(gestureRecognizer:)))
+        moveRecognizer.delegate = self
+        moveRecognizer.cancelsTouchesInView = false
+        addGestureRecognizer(moveRecognizer)
     }
     
     @objc func doubleTap(gestureRecognizer: UITapGestureRecognizer) {
@@ -93,6 +99,25 @@ class DrawView: UIView {
         }
         
         setNeedsDisplay()
+    }
+    
+    @objc func moveLine(gestureRecognizer: UIPanGestureRecognizer) {
+        print("Recognized a pan")
+        if let index = selectedLineIndex {
+            if gestureRecognizer.state == .changed {
+                let translation = gestureRecognizer.translation(in: self)
+                finishedLines[index].begin.x += translation.x
+                finishedLines[index].begin.y += translation.y
+                finishedLines[index].end.x += translation.x
+                finishedLines[index].end.y += translation.y
+                gestureRecognizer.setTranslation(.zero, in: self)
+                setNeedsDisplay()
+            }
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     @objc func deleteLine(sender: AnyObject) {
